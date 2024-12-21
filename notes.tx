@@ -1,8 +1,0 @@
-// When logging in:
-const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-// Returns: Bearer <token>
-
-// When making authenticated requests:
-headers: {
-    'Authorization': 'Bearer <your-token-here>'
-}

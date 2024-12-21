@@ -15,5 +15,6 @@ router.delete('/:id', expenseController.deleteExpense); // Delete an expense
 
 // Expense limit routes
 router.post('/limit', expenseLimitController.setExpenseLimit); // Set or update expense limit
+router.get('/remaining', expenseLimitController.getRemainingAmount); // Get remaining amount
 
 module.exports = router;

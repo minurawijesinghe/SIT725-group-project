@@ -31,7 +31,9 @@ const expenseController = {
 
                 // Check if the user is within the final 10% of their limit
                 const remainingAmount = expenseLimit.limit - expenseLimit.totalExpenses;
+                console.log('Remaining amount:', remainingAmount);
                 if (remainingAmount <= expenseLimit.limit * 0.1) {
+                    console.log('Emitting limit warning');
                     // Emit a notification via Socket.IO
                     const io = req.app.get('socketio');
                     io.emit(`user:${req.user._id}:limitWarning`, {

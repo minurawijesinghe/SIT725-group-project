@@ -67,3 +67,5 @@ npm-debug.log
 
 # Local MongoDB data
 data/db/
+
+notes.txt
