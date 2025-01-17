@@ -1,4 +1,4 @@
-const ExpenseLimit = require('../models/expenseLimit');
+const ExpenseLimit = require('../models/ExpenseLimit');
 const responseHandler = require('../utils/responseHandler'); // Assuming you have a utility for responses
 
 
