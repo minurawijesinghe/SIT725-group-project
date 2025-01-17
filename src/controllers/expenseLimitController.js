@@ -5,6 +5,7 @@ const responseHandler = require('../utils/responseHandler'); // Assuming you hav
 const setExpenseLimit = async (req, res, next) => {
   try {
     const { user, limit } = req.body;
+    console.log('User:', user);
 
     // Validate input
     if (!user || !limit || typeof limit !== 'number' || limit <= 0) {

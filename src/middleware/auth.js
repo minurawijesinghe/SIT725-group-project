@@ -6,6 +6,8 @@ const auth = async (req, res, next) => {
     try {
         // Get token from header
         const token = req.header('Authorization')?.replace('Bearer ', '');
+        console.log('Token:', token);
+
         
         if (!token) {
             return responseHandler.error(res, 401, 'No token provided');
@@ -15,6 +17,7 @@ const auth = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         // Find user
+        console.log('DecodedId:', decoded.id);
         const user = await User.findById(decoded.id).select('-password');
         
         if (!user) {
