@@ -17,6 +17,7 @@ const authController = {
     try {
       const { email, password } = req.body;
       const user = await User.findOne({ email });
+      console.log('User:', user);
       
       if (!user || !(await user.comparePassword(password))) {
         return res.status(401).json({ error: 'Invalid credentials' });
