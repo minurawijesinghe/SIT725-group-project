@@ -1,1 +1,63 @@
-heroku deployment code "git push heroku Feature/webSocket:main"
+# **Personal Expense Tracker Backend**
+
+This repository contains the backend service for the **Personal Expense Tracker App**, built with **Node.js** and following a modular architecture for scalability and maintainability.
+
+---
+
+## **Features**
+
+- **User Authentication**:
+  - User registration and login with **JWT-based authentication**.
+  - Secure password storage with **bcrypt**.
+- **Expense Management**:
+  - Create, update, delete, and retrieve expenses.
+  - Set expense limits and track progress.
+- **Category Management**:
+  - Create, edit, and delete expense categories.
+- **Notifications**:
+  - Notify users when they are nearing or exceeding their expense limits.
+- **Scalable and Maintainable Architecture**:
+  - Modular design with separate layers for routes, controllers, services, and utilities.
+
+---
+
+
+---
+
+## **Technologies Used**
+
+- **Backend Framework**: Node.js with Express.js
+- **Database**: MongoDB (with Mongoose ODM)
+- **Authentication**: JSON Web Tokens (JWT)
+- **Password Security**: bcrypt.js
+- **Environment Management**: dotenv
+- **Testing Framework**: (Jest)
+---
+
+## **Setup and Installation**
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/minurawijesinghe/SIT725-group-project.git
+   cd SIT725-group-project
+   npm install
+
+## **Set Up Environment Variables**
+    JWT_SECRET=<your-jwt-secret>
+    MONGODB_URI=mongodb://localhost:27017/ # Local MongoDB or cloud
+    PORT=3000
+
+## **Start the server**
+    npm start
+    The server will run on http://localhost:3000 by default.
+
+
+
+
+
+
+
+
+
+
+heroku deployment  "git push heroku Feature/webSocket:main"
