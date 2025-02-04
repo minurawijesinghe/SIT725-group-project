@@ -7,7 +7,13 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     trim: true,
-    lowercase: true
+    lowercase: true,
+    validate: {
+      validator: function(v) {
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+      },
+      message: 'Please enter a valid email'
+    }
   },
   password: {
     type: String,
@@ -20,20 +26,38 @@ const userSchema = new mongoose.Schema({
     trim: true
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  toJSON: {
+    transform: function(doc, ret) {
+      delete ret.password;
+      return ret;
+    }
+  },
+  toObject: {
+    transform: function(doc, ret) {
+      delete ret.password;
+      return ret;
+    }
+  }
 });
 
 // Hash password before saving
 userSchema.pre('save', async function(next) {
-  if (this.isModified('password')) {
-    this.password = await bcrypt.hash(this.password, 8);
+  if (!this.isModified('password')) return next();
+  
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
   }
-  next();
 });
 
-// Compare password method
-userSchema.methods.comparePassword = async function(password) {
-  return bcrypt.compare(password, this.password);
+// Method to compare password
+userSchema.methods.comparePassword = async function(candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
 };
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = User;

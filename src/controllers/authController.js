@@ -7,7 +7,12 @@ const authController = {
       const user = new User(req.body);
       await user.save();
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-      res.status(201).json({ user, token });
+      
+      // Create a user object without the password
+      const userResponse = user.toObject();
+      delete userResponse.password;
+      
+      res.status(201).json({ user: userResponse, token });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
@@ -24,7 +29,12 @@ const authController = {
       }
 
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-      res.json({ user, token });
+      
+      // Create a user object without the password
+      const userResponse = user.toObject();
+      delete userResponse.password;
+      
+      res.json({ user: userResponse, token });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
